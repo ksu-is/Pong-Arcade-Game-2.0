@@ -4,7 +4,7 @@ import turtle
 
 screen = turtle.Screen()
 screen.title("Flashback Pong")
-screen.bgcolor("black") #Changed background to black for original pong look 
+screen.bgcolor("black") #Changed background to black for original pong look(owen)
 screen.setup(width=800, height=600)
 screen.tracer(0)
 
@@ -13,7 +13,7 @@ score_b = 0
 
 # Paddle B (The paddle we are changing to the bottom of screen)
 paddle_b = turtle.Turtle()
-paddle_b.speed(0) #paddle speed 
+paddle_b.speed(2) #paddle speed change for quicker reaction(owen)
 paddle_b.shape("square")
 paddle_b.color("blue") #changed paddle B to blue GREG
 paddle_b.shapesize(stretch_wid=1,stretch_len=5)
@@ -22,7 +22,7 @@ paddle_b.goto(0, -200) #location of paddle B
 
 # Ball
 ball = turtle.Turtle()
-ball.speed(0)
+ball.speed(1) #Changed the ball speed to increase challenge for user(owen) 
 ball.shape("square")
 ball.color("white") #changed ball color to white GREG
 ball.penup()
