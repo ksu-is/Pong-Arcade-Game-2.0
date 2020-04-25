@@ -1,10 +1,11 @@
 #Pong
 
 import turtle
+import os #added for sound effects(owen)
 
 screen = turtle.Screen()
-screen.title("Flashback Pong")
-screen.bgcolor("black") #Changed background to black for original pong look(owen)
+screen.title("Single Player OG Pong") #title change(owen)
+screen.bgcolor("black") #change background for OG look(owen)
 screen.setup(width=800, height=600)
 screen.tracer(0)
 
@@ -13,41 +14,41 @@ score_b = 0
 
 # Paddle B (The paddle we are changing to the bottom of screen)
 paddle_b = turtle.Turtle()
-paddle_b.speed(2) #paddle speed change for quicker reaction(owen)
+paddle_b.speed(2) #paddle speed change(owen)
 paddle_b.shape("square")
-paddle_b.color("blue") #changed paddle B to blue GREG
+paddle_b.color("blue") #changed paddle B to blue(greg)
 paddle_b.shapesize(stretch_wid=1,stretch_len=5)
 paddle_b.penup()
 paddle_b.goto(0, -200) #location of paddle B
 
 # Ball
 ball = turtle.Turtle()
-ball.speed(1) #Changed the ball speed to increase challenge for user(owen) 
+ball.speed(3) #speed increase(owen)
 ball.shape("square")
-ball.color("white") #changed ball color to white GREG
+ball.color("white") #changed base ball color to white(greg)
 ball.penup()
 ball.goto(0, 200)
-ball.dx = 5
+ball.dx = 10 #speed increase(owen)
 ball.dy = 5
 
 # Pen
 pen = turtle.Turtle()
 pen.speed(0)
 pen.shape("square")
-pen.color("green")
+pen.color("white") #text color change(greg)
 pen.penup()
 pen.hideturtle()
-pen.goto(0, 260)
-pen.write("Score: {}".format(score_b), align="center", font=("Courier", 24, "normal")) #code for title and scoreboard
+pen.goto(0, 240) #changed to fit bigger text(owen)
+pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal")) #code for title and scoreboard #bigger text for easier read(greg)
 
 def paddle_b_left():
     x = paddle_b.xcor()
-    x += -30
+    x += -50 #speed increase(owen)
     paddle_b.setx(x)
 
 def paddle_b_right():
     x = paddle_b.xcor()
-    x += 30
+    x += 50 #speed increase(owen)
     paddle_b.setx(x)
 
 
@@ -55,9 +56,10 @@ def paddle_b_right():
 screen.listen()
 screen.onkeypress(paddle_b_left, "Left")
 screen.onkeypress(paddle_b_right, "Right")
-# added new bindings GREG
+
+# Added new bindings (greg)
 screen.onkeypress(paddle_b_left, "a")
-screen.onkeypress(paddle_b_right, "d")
+screen.onkeypress(paddle_b_right, "s")
 
 # Main game loop
 while True:
@@ -87,12 +89,54 @@ while True:
         ball.dx *= -1
 
     #Paddle and ball collisions 
+    if  ball.ycor() < -190 and ball.xcor() < paddle_b.xcor() + 10 and ball.xcor() > paddle_b.xcor() - 10:
+        ball.sety(-190)
+        ball.dy *= -1
+        paddle_b.color("purple") #color changes(owen)
+        ball.color("red") #color changes(owen)
+        score_b += 1
+        pen.clear()
+        pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal"))
+        
+        #Paddle and ball collisions #more colors(owen)
+    if  ball.ycor() < -190 and ball.xcor() < paddle_b.xcor() + 20 and ball.xcor() > paddle_b.xcor() - 20:
+        ball.sety(-190)
+        ball.dy *= -1
+        paddle_b.color("red")
+        ball.color("purple")
+        score_b += 1
+        pen.clear()
+        pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal"))
+
+        #Paddle and ball collisions #more colors(owen)
+    if  ball.ycor() < -190 and ball.xcor() < paddle_b.xcor() + 30 and ball.xcor() > paddle_b.xcor() - 30:
+        ball.sety(-190)
+        ball.dy *= -1
+        paddle_b.color("green")
+        ball.color("white")
+        score_b += 1
+        pen.clear()
+        pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal"))
+
+        #Paddle and ball collisions #more colors(owen)
+    if  ball.ycor() < -190 and ball.xcor() < paddle_b.xcor() + 40 and ball.xcor() > paddle_b.xcor() - 40:
+        ball.sety(-190)
+        ball.dy *= -1
+        paddle_b.color("orange")
+        ball.color("green")
+        score_b += 1
+        pen.clear()
+        pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal"))
+
+        #Paddle and ball collisions #more colors(owen)
     if  ball.ycor() < -190 and ball.xcor() < paddle_b.xcor() + 50 and ball.xcor() > paddle_b.xcor() - 50:
         ball.sety(-190)
         ball.dy *= -1
+        paddle_b.color("yellow")
+        ball.color("orange")
         score_b += 1
         pen.clear()
-        pen.write("Score: {}".format(score_b), align="center", font=("Courier", 24, "normal"))
+        pen.write("SCORE: {}".format(score_b), align="center", font=("Courier", 50, "normal"))
 
     elif ball.ycor() < -205: #endgame
         pen.clear()
